@@ -1,0 +1,40 @@
+<div class="col-md-6 offset-md-3">
+<h3 class="text-center">Registro de Empleado</h3><br><br>
+<form (ngSubmit)="onSubmit()" #empleadoForm="ngForm">
+
+    <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" class="form-control" id="nombre" [(ngModel)]="empleado.nombre" name="nombre" 
+    required minlength="4" maxlength="10" placeholder="Ingrese su nombre" #nombre="ngModel">
+    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched) ">
+        <div *ngIf="nombre.errors.required">Favor ingresar su nombre</div>
+        <div *ngIf="nombre.errors.minlength">El nombre debe ser de minimo 4 letras</div>
+        <div *ngIf="nombre.errors.maxlength">El nombre debe ser de maximo 10 letras</div>
+    </div>
+    </div>
+
+    <div class="form-group">
+    <label for="apellido">Apellido:</label>
+    <input type="text" class="form-control" id="apellido" [(ngModel)]="empleado.apellido" name="apellido" 
+    required minlength="4" maxlength="10" placeholder="Ingrese su apellido" #apellido="ngModel">
+    <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched) ">
+        <div *ngIf="apellido.errors.required">Favor ingresar su apellido</div>
+        <div *ngIf="apellido.errors.minlength">El apellido debe ser de minimo 4 letras</div>
+        <div *ngIf="apellido.errors.maxlength">El apellido debe ser de maximo 10 letras</div>
+
+    </div>
+    </div>
+   
+    <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" class="form-control" id="email" [(ngModel)]="empleado.email" name="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+    required placeholder="Ingrese su email" #email="ngModel">
+    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched) ">
+    <div *ngIf="email.errors.required">Favor ingresar su email </div>
+    <div *ngIf="email.errors.pattern">Favor ingresar su email de esta forma: user100@gmail.com</div>
+    </div>
+    </div>
+    
+<button class="btn btn-success" [disabled]="!empleadoForm.form.valid">Guardar</button>
+</form>
+</div>
